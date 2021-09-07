@@ -126,4 +126,24 @@ def game_hash
   }
 end
 
-# Write code here
+def num_points_scored player
+  roster = game_hash[:home][:players] + game_hash[:away][:players]
+
+  found = roster.find {|p| p[:player_name] == player}
+
+  found[:points]
+end
+
+def shoe_size player
+  game_hash.each { |attr, data|
+    if data == [:players][:player_name]
+      return :shoe
+    end
+  }
+end
+
+def team_colors team
+  teams = game_hash[:home] + game_hash[:away]
+  found = teams.find {|t| t[:team_name] == team}
+  found[:colors]
+end
